@@ -26,6 +26,6 @@ Hadoop logs from LogHub were used as a substitute for Genesys logs to safely tes
 - Improve anomaly detection with **template rarity** (rare log patterns).  
 - Add more **features** for machine learning (capital words, message length, special characters).  
 - Generate **better visualizations** of anomalies.  
-- Prepare the notebook to handle **Genesys logs** when they become available.
+- Use this project as example and foundational work for replicating the process in a possible test environement to handle **Genesys logs** when they become available.
 
 x
