@@ -1,6 +1,6 @@
 # AI Log PoC - Steps Done
 
-This project is a **Proof of Concept (PoC)** to test AI-based log analysis. The goal is to explore how we can detect unusual log entries automatically, which can later be applied to Genesys application logs.
+This project is a **Proof of Concept (PoC)** to test AI-based log analysis. The goal is to explore how we can detect unusual log entries automatically, which can later be applied to a specific application logs.
 
 ## Log Data Used
 Hadoop logs from LogHub were used as a substitute for Genesys logs to safely test the AI log analysis workflow. They have a similar structure with timestamps, log levels, components, and messages. This allows us to practice parsing, anomaly detection, and visualization before working with real Genesys logs.
@@ -26,6 +26,6 @@ Hadoop logs from LogHub were used as a substitute for Genesys logs to safely tes
 - Improve anomaly detection with **template rarity** (rare log patterns).  
 - Add more **features** for machine learning (capital words, message length, special characters).  
 - Generate **better visualizations** of anomalies.  
-- Use this project as example and foundational work for replicating the process in a possible test environement to handle **Genesys logs** when they become available.
+- Use this project as example and foundational work for replicating the process in a possible test environement to handle **specific application logs** when they become available.
 
 x
