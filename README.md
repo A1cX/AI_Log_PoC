@@ -78,5 +78,35 @@ Mark anomalies
 logs[logs['anomaly'] == -1]
 Filter detected anomalies
 - local data filtering
+These commands were used inside the notebook to load, explore, and test anomaly detection on logs.
+They only process local CSV log data and do not run or execute log contents.
+import pandas as pd
+Import Pandas for data handling
+
+logs = pd.read_csv("Hadoop_2k.log_structured.csv")
+Load structured log file into memory
+
+logs.head()
+Preview first rows of logs
+
+logs['timestamp'] = pd.to_datetime(logs['timestamp'])
+Convert timestamp column to datetime
+logs.describe()
+Summarize dataset (count, mean, std, etc.)
+
+from sklearn.ensemble import IsolationForest
+Import anomaly detection model
+
+model = IsolationForest(contamination=0.01, random_state=42)
+Initialize anomaly detection model
+model.fit(logs[['feature1','feature2']])
+Train model on numerical log features
+
+logs['anomaly'] = model.predict(logs[['feature1','feature2']])
+Add anomaly column (-1 = anomaly)
+
+logs[logs['anomaly'] == -1]
+Display anomalies only
+
 
 x
