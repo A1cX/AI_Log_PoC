@@ -30,35 +30,64 @@ Hadoop logs from LogHub were used as a substitute for Genesys logs to safely tes
 
 ## Safety Notes
 
-All commands and code used in this PoC are purely analytical and do not execute any log data as code or connect to external endpoints (except GitHub for repository storage). The table below summarizes each step and its purpose.
+All commands and code used in this PoC are purely analytical and do not execute any log data as code or connect to external endpoints (except GitHub for repository storage). 
 
-These are the commands I used to set up version control and share my project on GitHub:
+🔹 Git / GitHub Commands
 
-git init	Starts a new Git repo in the folder	Just sets up tracking for changes
-git add .	Selects all files to be included in the next commit	Doesn’t change the files, just marks them
-git commit -m "message"	Saves a snapshot of your changes	Safe, only local
-git branch -M main	Renames the default branch to main	A naming step, nothing more
-git remote add origin <URL>	Connects your local repo to GitHub	Only sets the link to GitHub
-git push -u origin main	Uploads the project to GitHub	Sends files you chose to your repo
+These commands were used to set up version control and upload the project to GitHub.
+They only affect the project folder, nothing else.
 
-Jupyter / Python Commands:
+git init → starts Git tracking in the folder
 
-These commands were used to open, look at, and run a simple anomaly detection test on logs.
-They only work with the local CSV file, and don’t execute or change the logs themselves.
+git add . → marks files to be included in the next commit
 
-import pandas as pd	Loads Pandas library for data handling	Standard setup step
-logs = pd.read_csv("Hadoop_2k.log_structured.csv")	Opens the log file into memory	Only reads the file
-logs.head()	Shows the first rows	For preview only
-logs['timestamp'] = pd.to_datetime(logs['timestamp'])	Converts timestamps into date/time format	Just formatting
-logs.describe()	Gives a quick summary (counts, averages, etc.)	Read-only
-from sklearn.ensemble import IsolationForest	Loads the anomaly detection model	Library import
-model = IsolationForest(contamination=0.01, random_state=42)	Sets up the anomaly detection model	Safe initialization
-model.fit(logs[['feature1','feature2']])	Trains the model on chosen data columns	Works only on numbers in the log
-logs['anomaly'] = model.predict(logs[['feature1','feature2']])	Marks rows as “normal” or “anomaly”	Adds a column
-logs[logs['anomaly'] == -1]	Shows only the anomalies	Read-only view
+git commit -m "message" → saves a snapshot of changes locally
 
-To sum it up:
-👉 Git commands just handle saving and uploading.
-👉 Python commands just read, format, and analyze the test log file.
+git branch -M main → renames the branch to main
+
+git remote add origin <URL> → connects the project to GitHub
+
+git push -u origin main → uploads files to GitHub
+
+🔹 Jupyter / Python Commands
+
+These commands were used to read and test the Hadoop sample logs.
+They only worked on the local file and did not change the logs themselves.
+
+Importing libraries
+
+import pandas as pd → loads the Pandas library for data handling
+
+from sklearn.ensemble import IsolationForest → loads the anomaly detection model
+
+Reading the log file
+
+pd.read_csv("Hadoop_2k.log_structured.csv") → opens the log file
+
+logs.head() → shows the first rows of data
+
+Formatting and exploring
+
+pd.to_datetime(...) → converts timestamps into date format
+
+logs.describe() → quick summary (counts, averages, etc.)
+
+Running anomaly detection
+
+IsolationForest(...) → sets up the anomaly detection model
+
+model.fit(...) → trains the model on selected columns
+
+model.predict(...) → adds a column marking “normal” vs “anomaly”
+
+logs[logs['anomaly'] == -1] → shows only anomalies
+
+👉 Note:
+
+All Git commands just handle saving and uploading the project.
+
+All Python commands only read and analyze the local CSV log file.
+
+No external systems, no sensitive data touched.
 
 x
