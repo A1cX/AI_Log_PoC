@@ -27,86 +27,38 @@ Hadoop logs from LogHub were used as a substitute for Genesys logs to safely tes
 - Add more **features** for machine learning (capital words, message length, special characters).  
 - Generate **better visualizations** of anomalies.  
 - Use this project as example and foundational work for replicating the process in a possible test environement to handle **specific application logs** when they become available.
+
 ## Safety Notes
 
 All commands and code used in this PoC are purely analytical and do not execute any log data as code or connect to external endpoints (except GitHub for repository storage). The table below summarizes each step and its purpose.
 
-Step / Command and Purpose
-Safety / Notes
-cd ~/Desktop/AI_Log_PoC
-Move into project folder
-- local folder navigation only
-git init
-Initialize local Git repository
-- sets up Git tracking
-git add .
-Stage all files for commit
-- no code execution
-git commit -m "message"
-Commit files locally
-- records snapshot of files
-git remote set-url origin https://...
-Set remote GitHub repository
-– configuration only
-git push -u origin main
-Upload commits to GitHub
-- uploads files, no code execution
-ls / pwd / mv loghub-master loghub
-List, show path, rename folder
-– local file operations
-import pandas as pd
-Load Python library for data
-- standard library import
-logs = pd.read_csv("Hadoop_2k.log_structured.csv")
-Load log CSV into DataFrame
-- reads local file only
-logs['timestamp'] = pd.to_datetime(logs['timestamp'])
-Convert timestamp column
- – data transformation
-from sklearn.ensemble import IsolationForest
-Import anomaly detection model
-- library import
-model = IsolationForest(contamination=0.01)
-Initialize anomaly detection
-– local computation
-model.fit(logs[['feature1','feature2']])
-Train model on selected features
-- works on local data only
-logs['anomaly'] = model.predict(logs[['feature1','feature2']])
-Mark anomalies
-- no external access
-logs[logs['anomaly'] == -1]
-Filter detected anomalies
-- local data filtering
-These commands were used inside the notebook to load, explore, and test anomaly detection on logs.
-They only process local CSV log data and do not run or execute log contents.
-import pandas as pd
-Import Pandas for data handling
+These are the commands I used to set up version control and share my project on GitHub:
 
-logs = pd.read_csv("Hadoop_2k.log_structured.csv")
-Load structured log file into memory
+git init	Starts a new Git repo in the folder	Just sets up tracking for changes
+git add .	Selects all files to be included in the next commit	Doesn’t change the files, just marks them
+git commit -m "message"	Saves a snapshot of your changes	Safe, only local
+git branch -M main	Renames the default branch to main	A naming step, nothing more
+git remote add origin <URL>	Connects your local repo to GitHub	Only sets the link to GitHub
+git push -u origin main	Uploads the project to GitHub	Sends files you chose to your repo
 
-logs.head()
-Preview first rows of logs
+Jupyter / Python Commands:
 
-logs['timestamp'] = pd.to_datetime(logs['timestamp'])
-Convert timestamp column to datetime
-logs.describe()
-Summarize dataset (count, mean, std, etc.)
+These commands were used to open, look at, and run a simple anomaly detection test on logs.
+They only work with the local CSV file, and don’t execute or change the logs themselves.
 
-from sklearn.ensemble import IsolationForest
-Import anomaly detection model
+import pandas as pd	Loads Pandas library for data handling	Standard setup step
+logs = pd.read_csv("Hadoop_2k.log_structured.csv")	Opens the log file into memory	Only reads the file
+logs.head()	Shows the first rows	For preview only
+logs['timestamp'] = pd.to_datetime(logs['timestamp'])	Converts timestamps into date/time format	Just formatting
+logs.describe()	Gives a quick summary (counts, averages, etc.)	Read-only
+from sklearn.ensemble import IsolationForest	Loads the anomaly detection model	Library import
+model = IsolationForest(contamination=0.01, random_state=42)	Sets up the anomaly detection model	Safe initialization
+model.fit(logs[['feature1','feature2']])	Trains the model on chosen data columns	Works only on numbers in the log
+logs['anomaly'] = model.predict(logs[['feature1','feature2']])	Marks rows as “normal” or “anomaly”	Adds a column
+logs[logs['anomaly'] == -1]	Shows only the anomalies	Read-only view
 
-model = IsolationForest(contamination=0.01, random_state=42)
-Initialize anomaly detection model
-model.fit(logs[['feature1','feature2']])
-Train model on numerical log features
-
-logs['anomaly'] = model.predict(logs[['feature1','feature2']])
-Add anomaly column (-1 = anomaly)
-
-logs[logs['anomaly'] == -1]
-Display anomalies only
-
+To sum it up:
+👉 Git commands just handle saving and uploading.
+👉 Python commands just read, format, and analyze the test log file.
 
 x
