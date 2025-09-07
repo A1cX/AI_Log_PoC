@@ -47,7 +47,7 @@ Initialized Git repository locally and pushed all files to GitHub.
 
 Created a README to document steps, safety checks, and next actions.
 
-Phase 1: Setup and GitHub
+**Phase 1: Setup and GitHub**
 
 ## Log Data Used
 Hadoop logs from LogHub were used as a substitute for the target application logs to safely test the AI log analysis workflow. They have a similar structure with timestamps, log levels, components, and messages with the target application that needs proof of Concept validated. This allows us to practice parsing, anomaly detection, and visualization before working with real application logs in a test environement.
@@ -61,7 +61,7 @@ Hadoop logs from LogHub were used as a substitute for the target application log
 - Use this project as example and foundational work for replicating the process in a possible test environement to handle **specific application logs** when they become available.
 
 
-Phase 2: Anomaly Detection
+**Phase 2: Anomaly Detection**
 
 In this phase, the PoC applies AI-based anomaly detection on structured Hadoop sample logs. Using a machine learning model (Isolation Forest), the notebook identifies unusual log events, including errors and unexpected behaviors. The model successfully flagged the top anomalies and visualized them over time, demonstrating that AI can help highlight potential root causes in log data. This confirms the feasibility of using AI to assist in log analysis and troubleshooting, forming a solid proof of concept for future work with live application logs.
 
