@@ -9,11 +9,9 @@ We used sample Hadoop logs to simulate the workflow before considering specific 
 ## What I did so far
 Created project folder on my Mac (~/Desktop/AI_Log_PoC).
 
-Installed Python 3.12 and Jupyter Notebook to run code.
+Used Python 3.12 via Jupyter Notebook, which runs a Python kernel in a browser interface, to write and execute code interactively.
 
 Collected logs:
-
-Copied Mac system logs for practice.
 
 Downloaded a public, anonymized Hadoop log dataset from LogHub (GitHub).
 
