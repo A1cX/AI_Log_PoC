@@ -1,0 +1,15 @@
+AI Log PoC - Steps Done
+
+1. Created project folder: ~/Desktop/AI_Log_PoC
+2. Installed Python 3.12 and Jupyter Notebook
+3. Copied system logs and explored them (parsing into structured fields)
+4. Downloaded LogHub Hadoop dataset (public anonymized logs)
+5. Loaded logs into notebook, parsed fields: timestamp, level, thread, component, message
+6. Applied Isolation Forest for anomaly detection
+7. Visualized anomalies
+8. Initialized Git repository and committed notebook + dataset
+9. Pushed repository to GitHub
+10. Next steps: improve anomaly detection, template rarity analysis, visualizations, prepare for Genesys logs
+
+
+
