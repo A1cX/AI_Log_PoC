@@ -75,6 +75,8 @@ Visualization: Shows unusual log events over time.
 
 Conclusion: AI successfully identifies anomalous log entries, confirming the feasibility of using AI to assist in log analysis and troubleshooting.
 
+The PoC shows anomaly detection works in principle, but **doesn’t yet tie anomalies to actual operational issues**. That will be the **next step**
+
 ## Safety Notes
 
 All commands and code used in this PoC are purely analytical and do not execute any log data as code or connect to external endpoints (except GitHub for repository storage). 
