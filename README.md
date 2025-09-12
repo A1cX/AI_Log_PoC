@@ -52,19 +52,22 @@ Created a README to document steps, safety checks, and next actions.
 ## Log Data Used
 Hadoop logs from LogHub were used as a substitute for the target application logs to safely test the AI log analysis workflow. They have a similar structure with timestamps, log levels, components, and messages with the target application that needs proof of Concept validated. This allows us to practice parsing, anomaly detection, and visualization before working with real application logs in a test environement.
 
-
-
 ## Next Steps
 - Improve anomaly detection with **template rarity** (rare log patterns).  
 - Add more **features** for machine learning (capital words, message length, special characters).  
 - Generate **better visualizations** of anomalies.  
 - Use this project as example and foundational work for replicating the process in a possible test environement to handle **specific application logs** when they become available.
 
-
 **Phase 2: Anomaly Detection**
 
 In this phase, the PoC applies AI-based anomaly detection on structured Hadoop sample logs. Using a machine learning model (Isolation Forest), the notebook identifies unusual log events, including errors and unexpected behaviors. The model successfully flagged the top anomalies and visualized them over time, demonstrating that AI can help highlight potential root causes in log data. This confirms the feasibility of using AI to assist in log analysis and troubleshooting, forming a solid proof of concept for future work with live application logs.
 
+## Phase 3: Correlation + Visualization
+
+- Filtered only anomalies from Phase 2.  
+- Summarized top error messages from anomalous logs.  
+- Visualized anomalies on a timeline to show patterns over time.
+  
 **Results / Proof of Concept**
 
 Top anomalies detected: Errors from RMCommunicator Allocator in Hadoop logs.
@@ -73,7 +76,11 @@ Visualization: Shows unusual log events over time.
 
 Conclusion: AI successfully identifies anomalous log entries, confirming the feasibility of using AI to assist in log analysis and troubleshooting.
 
-The PoC shows anomaly detection works in principle, but **doesn’t yet tie anomalies to actual operational issues**. That will be the **next step**
+The PoC shows anomaly detection works in principle, is a work in progress so far latest phase prooved it can:
+
+- Successfully highlight correlations and patterns in anomalies.  
+- Provide insight into error trends and potential root causes.  
+- PoC confirmed that anomaly detection works in principle and can support troubleshooting.
 
 ## Safety Notes
 
@@ -102,6 +109,7 @@ git push -u origin main → uploads files to GitHub
 
 These commands were used to read and test the Hadoop sample logs.
 They only worked on the local file and did not change the logs themselves.
+All plotting and processig was done locally.
 
 Importing libraries
 
@@ -167,6 +175,35 @@ Displays the top 10 anomalous log entries; read-only.
 
 plt.scatter(...)
 Generates visualizations for anomalies; only plots data.
+anomalies = logs[logs['anomaly'] == -1]
+
+Filters only anomalous log entries from your dataset.
+
+Operates locally on the DataFrame; no external access.
+
+error_summary = anomalies['Content'].value_counts().head(10)
+
+Counts the 10 most frequent error messages among anomalies.
+
+Local computation; no sensitive info exposed.
+
+plt.scatter(...) and plt.figure(...)
+
+Visualizes anomalies on a timeline.
+
+Only displays data you already have locally.
+
+anomaly_counts = anomalies.set_index('timestamp').resample('1min').size()
+
+Aggregates anomalies per minute for frequency analysis.
+
+Local processing; no external connections.
+
+anomaly_counts.plot(kind='bar', ...)
+
+Plots anomaly frequency as a bar chart.
+
+Visualization only; local operation.
 
 👉 Note:
 
