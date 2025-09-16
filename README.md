@@ -82,8 +82,8 @@ The PoC shows anomaly detection works in principle, is a work in progress so far
 - Provide insight into error trends and potential root causes.  
 - PoC confirmed that anomaly detection works in principle and can support troubleshooting.
 
-  **Next step** is to test on other dataset and unstructured data, ongoing checks are to find best substitutes
-
+  **Next step** is to analyse frequency and trend Count to determine how **often** each **error** type appears over time
+  
 ## Safety Notes
 
 All commands and code used in this PoC are purely analytical and do not execute any log data as code or connect to external endpoints (except GitHub for repository storage). 
