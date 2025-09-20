@@ -6,7 +6,7 @@ This project is a **Proof of Concept (PoC)** to analyze system logs and detect a
 The goal is to explore whether AI can help troubleshoot issues faster and identify potential root causes in complex log files, unstructured.
 
 We used sample Hadoop logs to simulate the workflow before considering specific application logs in a test environment.
-## What I did so far
+## What was so far and next steps
 Created project folder on my Mac (~/Desktop/AI_Log_PoC).
 
 Used Python 3.12 via Jupyter Notebook, which runs a Python kernel in a browser interface, to write and execute code interactively.
